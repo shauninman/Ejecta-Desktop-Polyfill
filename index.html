@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ejecta Desktop</title>
+<script type="text/javascript" src="Desktop/touche-min.js"></script>
+<style>
+html,body
+{
+	margin: 0;
+	padding: 0;
+	background-color: #111;
+}
+canvas
+{
+	background-color: #000;
+}
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<script type="text/javascript">
+var canvas = document.getElementById('canvas');
+window.innerWidth = canvas.width = 320;
+window.innerHeight = canvas.height = 568;
+</script>
+<script type="text/javascript" src="Desktop/ejecta.js"></script>
+</body>
+</html>
