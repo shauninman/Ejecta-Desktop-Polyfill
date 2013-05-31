@@ -1,10 +1,13 @@
 // An Ejecta polyfill for developing in desktop Safari
 var ejecta = 
 {
+	__included : {}, // prevents "Maximum call stack size exceeded" errors in browser
 	include : function(src)
 	{
-		var request = new XMLHttpRequest();
+		if (this.__included[src]) return;
+		this.__included[src] = true;
 		
+		var request = new XMLHttpRequest();
 		request.open('GET', src, false);
 		request.send();
 		eval.call(window, request.responseText + "\n //@ sourceURL=" + src);
