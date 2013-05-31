@@ -1,6 +1,6 @@
 # Ejecta Desktop Polyfill
 
-[Ejecta](http://impactjs.com/ejecta) by Dominic Szablewski is a browserless canvas implementation for iOS. This (dumb?) polyfill allows you to run your Ejecta project in desktop Safari. 
+[Ejecta](http://impactjs.com/ejecta) by Dominic Szablewski is a browserless canvas implementation for iOS. This polyfill allows you to run your Ejecta project in desktop Safari. 
 
 Implements `ejecta.inlcude()`, `ejecta.landscape`, `ejecta.openURL()`, and `ejecta.getText()`. Includes [Touché](https://github.com/davidcalhoun/touche) by David Calhoun.
 
