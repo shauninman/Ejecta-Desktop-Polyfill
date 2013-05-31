@@ -1,10 +1,13 @@
 // An Ejecta polyfill for developing in desktop Safari
 var ejecta = 
 {
-	landscapeMode : canvas.width > canvas.height,
 	include : function(src)
 	{
-		// includes are pre-parsed, inserted, and eval'd below
+		var request = new XMLHttpRequest();
+		
+		request.open('GET', src, false);
+		request.send();
+		eval(request.responseText + "\n //@ sourceURL=" + src);
 	},
 	openURL : function(url, message)
 	{
@@ -13,37 +16,23 @@ var ejecta =
 	getText : function(title, message, callback)
 	{
 		callback(window.prompt(message));
+	},
+	loadFont: function(file)
+	{
+		var name = file.replace(/^.*\/|\.[^\.]*$/g,'');
+		var newStyle = document.createElement('style');
+		newStyle.appendChild(document.createTextNode(
+			"@font-face {\n" +
+				"font-family: '" + name + "';\n" +
+				"src: url('" + file + "');\n" +
+			"}"
+		));
+		
+		document.head.appendChild(newStyle);
 	}
 };
 window.requestAnimationFrame = window.webkitRequestAnimationFrame;
 
 // use `if (window.Ejecta) console.log('native');` to block native features like GameCenter
 
-// extra-dirty JavaScript includes
-var included = [];
-function parseEjectaIncludes(src)
-{
-	if (included[src]) return '';
-	included[src] = true;
-	
-	var request = new XMLHttpRequest();
-	request.open('GET', src, false); // synchronous
-	request.send();
-	
-	var js = request.responseText;
-	
-	var m = js.match(/ejecta\.include\(([^\)]+)\);/g);
-	if (m!=null)
-	{
-		for (var i=0; i<m.length; i++)
-		{
-			var n = m[i].match(/(['"])([^'"]+)/);
-			if (n != null)
-			{
-				js = js.replace(m[i], parseEjectaIncludes(n[2]));
-			}
-		}
-	}
-	return js;
-}
-eval(parseEjectaIncludes('index.js'));
+ejecta.include('index.js');
