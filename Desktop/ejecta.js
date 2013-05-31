@@ -16,6 +16,19 @@ var ejecta =
 	getText : function(title, message, callback)
 	{
 		callback(window.prompt(message));
+	},
+	loadFont: function(file)
+	{
+		var name = file.replace(/^.*\/|\.[^\.]*$/g,'');
+		var newStyle = document.createElement('style');
+		newStyle.appendChild(document.createTextNode(
+			"@font-face {\n" +
+				"font-family: '" + name + "';\n" +
+				"src: url('" + file + "');\n" +
+			"}"
+		));
+		
+		document.head.appendChild(newStyle);
 	}
 };
 window.requestAnimationFrame = window.webkitRequestAnimationFrame;
