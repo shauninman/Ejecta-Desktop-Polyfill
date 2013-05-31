@@ -1,7 +1,6 @@
 // An Ejecta polyfill for developing in desktop Safari
 var ejecta = 
 {
-	landscapeMode : canvas.width > canvas.height,
 	include : function(src)
 	{
 		// includes are pre-parsed, inserted, and eval'd below
