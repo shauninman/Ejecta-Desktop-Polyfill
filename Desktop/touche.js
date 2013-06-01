@@ -29,7 +29,7 @@
 
 	// touches/targetTouches/changedTouches emulation
     touchesObj = [{
-      // identifier: unique id for the touch event (lazy.. just hooking it into the timestamp)
+      // identifier: should persist for the duration of the simulated touch
       // not using Date.now() just for greater support
       identifier: identifier,
       pageX:      e.pageX,
